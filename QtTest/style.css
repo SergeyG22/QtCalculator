@@ -1,0 +1,7 @@
+QPushButton { 
+background-color: white; 
+
+border-style: solid;
+border-radius: 6px;
+}
+QLCDNumber {background-color: white; }
