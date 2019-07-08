@@ -38,6 +38,8 @@ public:
 	int i = 0;
     double result;
 	char operand;
+	bool k1 = true;
+	bool k2 = true;
 private:
 	Ui::QtTestClass ui;
 signals:
@@ -62,4 +64,8 @@ private slots:
 	void total();
 	void slider_change_LCD_color();
 	void slider_change_background_color();
+	int pow_calculator();
+	double sqrt_calculator();
+	double percent_calculator();
+	void arroy();
 };

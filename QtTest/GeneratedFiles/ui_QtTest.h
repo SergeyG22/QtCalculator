@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLCDNumber>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -27,8 +28,8 @@ class Ui_QtTestClass
 public:
     QWidget *centralWidget;
     QLCDNumber *lcdNumber;
-    QPushButton *pushButton;
-    QPushButton *pushButton_10;
+    QPushButton *pushButton_pow;
+    QPushButton *pushButton_sqrt;
     QPushButton *pushButton_plus;
     QPushButton *pushButton_12;
     QPushButton *pushButton_clear;
@@ -50,6 +51,8 @@ public:
     QPushButton *pushButton_minus;
     QSlider *Slider_LCD_color;
     QSlider *Slider_Background_Color;
+    QLineEdit *lineEdit_percent;
+    QPushButton *pushButton_arroy;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -73,16 +76,16 @@ public:
         font1.setWeight(50);
         lcdNumber->setFont(font1);
         lcdNumber->setDigitCount(15);
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(18, 122, 77, 33));
+        pushButton_pow = new QPushButton(centralWidget);
+        pushButton_pow->setObjectName(QStringLiteral("pushButton_pow"));
+        pushButton_pow->setGeometry(QRect(18, 122, 77, 33));
         QFont font2;
         font2.setPointSize(12);
-        pushButton->setFont(font2);
-        pushButton_10 = new QPushButton(centralWidget);
-        pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
-        pushButton_10->setGeometry(QRect(102, 122, 77, 33));
-        pushButton_10->setFont(font2);
+        pushButton_pow->setFont(font2);
+        pushButton_sqrt = new QPushButton(centralWidget);
+        pushButton_sqrt->setObjectName(QStringLiteral("pushButton_sqrt"));
+        pushButton_sqrt->setGeometry(QRect(102, 122, 77, 33));
+        pushButton_sqrt->setFont(font2);
         pushButton_plus = new QPushButton(centralWidget);
         pushButton_plus->setObjectName(QStringLiteral("pushButton_plus"));
         pushButton_plus->setGeometry(QRect(277, 300, 71, 91));
@@ -125,7 +128,7 @@ public:
         pushButton_point->setFont(font2);
         pushButton_percent = new QPushButton(centralWidget);
         pushButton_percent->setObjectName(QStringLiteral("pushButton_percent"));
-        pushButton_percent->setGeometry(QRect(186, 122, 77, 33));
+        pushButton_percent->setGeometry(QRect(200, 480, 77, 33));
         pushButton_percent->setFont(font2);
         pushButton_total = new QPushButton(centralWidget);
         pushButton_total->setObjectName(QStringLiteral("pushButton_total"));
@@ -187,6 +190,15 @@ public:
         Slider_Background_Color->setGeometry(QRect(30, 510, 160, 22));
         Slider_Background_Color->setMaximum(8);
         Slider_Background_Color->setOrientation(Qt::Horizontal);
+        lineEdit_percent = new QLineEdit(centralWidget);
+        lineEdit_percent->setObjectName(QStringLiteral("lineEdit_percent"));
+        lineEdit_percent->setGeometry(QRect(290, 480, 51, 33));
+        lineEdit_percent->setFont(font2);
+        lineEdit_percent->setMaxLength(3);
+        pushButton_arroy = new QPushButton(centralWidget);
+        pushButton_arroy->setObjectName(QStringLiteral("pushButton_arroy"));
+        pushButton_arroy->setGeometry(QRect(186, 122, 77, 33));
+        pushButton_arroy->setFont(font2);
         QtTestClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QtTestClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -207,8 +219,8 @@ public:
     void retranslateUi(QMainWindow *QtTestClass)
     {
         QtTestClass->setWindowTitle(QApplication::translate("QtTestClass", "QtTest", nullptr));
-        pushButton->setText(QApplication::translate("QtTestClass", "x\302\262", nullptr));
-        pushButton_10->setText(QApplication::translate("QtTestClass", "\342\210\232", nullptr));
+        pushButton_pow->setText(QApplication::translate("QtTestClass", "x\302\262", nullptr));
+        pushButton_sqrt->setText(QApplication::translate("QtTestClass", "\342\210\232", nullptr));
         pushButton_plus->setText(QApplication::translate("QtTestClass", "+", nullptr));
         pushButton_12->setText(QApplication::translate("QtTestClass", "off", nullptr));
         pushButton_clear->setText(QApplication::translate("QtTestClass", "clear", nullptr));
@@ -228,6 +240,7 @@ public:
         pushButton_8->setText(QApplication::translate("QtTestClass", "8", nullptr));
         pushButton_9->setText(QApplication::translate("QtTestClass", "9", nullptr));
         pushButton_minus->setText(QApplication::translate("QtTestClass", "-", nullptr));
+        pushButton_arroy->setText(QApplication::translate("QtTestClass", "->", nullptr));
     } // retranslateUi
 
 };

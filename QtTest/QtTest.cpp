@@ -5,6 +5,7 @@
 #include <qpalette.h>
 #include <iostream>
 #include <qslider>
+#include <math.h>
 
 QtTest::QtTest(QWidget *parent)
 	: QMainWindow(parent)
@@ -32,7 +33,9 @@ QtTest::QtTest(QWidget *parent)
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &QtTest::slot_button_7);
 	connect(ui.pushButton_8, &QPushButton::clicked, this, &QtTest::slot_button_8);
 	connect(ui.pushButton_9, &QPushButton::clicked, this, &QtTest::slot_button_9);
+
 	connect(ui.pushButton_clear, &QPushButton::clicked, this, &QtTest::clear_display);
+
 	connect(ui.pushButton_plus,&QPushButton::clicked,this,&QtTest::plus);
 	connect(ui.pushButton_minus,&QPushButton::clicked,this,&QtTest::minus);
 	connect(ui.pushButton_delenie, &QPushButton::clicked, this, &QtTest::share);
@@ -41,6 +44,13 @@ QtTest::QtTest(QWidget *parent)
 
 	connect(ui.Slider_LCD_color,&QSlider::valueChanged,this,&QtTest::slider_change_LCD_color);
 	connect(ui.Slider_Background_Color,&QSlider::valueChanged,this,&QtTest::slider_change_background_color);
+	
+	connect(ui.pushButton_pow, &QPushButton::clicked, this, &QtTest::pow_calculator);
+	connect(ui.pushButton_sqrt, &QPushButton::clicked, this, &QtTest::sqrt_calculator);
+	connect(ui.pushButton_percent, &QPushButton::clicked, this, &QtTest::percent_calculator);
+
+	connect(ui.pushButton_arroy, &QPushButton::clicked, this, &QtTest::arroy);
+
 }
 
 void QtTest::size_text_display() // функция позволяет вводить числовую строку и отображать ее на дисплее
@@ -106,9 +116,15 @@ void QtTest::slot_button_8() {
 void QtTest::slot_button_9() { 
 	ui.lcdNumber->display(display_number += StrButton_9);
 	
-	
-	
 }
+	
+
+
+
+
+
+
+
 
 //======================================================
 
@@ -118,7 +134,10 @@ void QtTest::clear_display() // Очищает дисплей, сбрасывает на нуль
 	dump.clear();
 	result = 0;
 	ui.lcdNumber->display(0);
-	i = 0;	         
+	ui.lineEdit_percent->clear();
+	i = 0;
+	k1 = true;
+	k2 = true;
 }
  
 void QtTest::minus()
@@ -156,7 +175,7 @@ void QtTest::plus()
 	operand = '+';
 	a = display_number.toInt();
 	if (i == 0) {
-		result = a;
+		result = a;	
 		dump.push_back(a);
 		ui.lcdNumber->display(result);
 		display_number.clear();
@@ -243,31 +262,105 @@ void QtTest::multiply()
 	
 }
 
+int QtTest::pow_calculator()// функция возведения в степень ДОДЕЛАТЬ!!!
+{
+	if (k1) {
+		a = display_number.toInt(); // получаем число
+		result = pow(a, 2);// получаем результат
+		ui.lcdNumber->display(result);
+		display_number.clear();
+		k1 = false;
+		
+	}
+	else {
+		result = pow(result, 2);
+		ui.lcdNumber->display(result);// отображаем
+		display_number.clear();
+		
+	}
+	// result надо возвести опять в квадрат при следующем вводе
+	
+	return result;
+}
+
+double QtTest::sqrt_calculator()// функция вычисления корня квадратного ДОДЕЛАТЬ!!!
+{
+	if (k2) {
+		a = display_number.toInt(); // получаем число
+		result = sqrt(a);// получаем результат
+		ui.lcdNumber->display(result);
+		display_number.clear();
+		k2 = false;
+
+	}
+	else {
+		result = sqrt(result);
+		ui.lcdNumber->display(result);// отображаем
+		display_number.clear();
+
+	}
+
+
+
+	return result;
+}
+
+double QtTest::percent_calculator()
+{
+	a = display_number.toInt();	
+	result = ((double)a / 100) * ui.lineEdit_percent->text().toInt();
+	ui.lcdNumber->display(result);
+
+
+
+	return 0;
+}
+
+void QtTest::arroy()// функция удаляет последнее введенное число Доделать!!!
+{
+	display_number.chop(1);
+	
+
+
+}
+
+
+
+
+
+
+
+
+
+
 void QtTest::total()
 {
 	switch (operand) {
 	case '+':
-		a = display_number.toInt();
-		if (i == 0) {
-			result = a;
-			dump.push_back(a);
-			ui.lcdNumber->display(result);
-			display_number.clear();
-			i++;
+		a = display_number.toInt();//получаем строку с дисплея и преобразуем ее в число		
+		std::cout << result<<std::endl;
+	
+		if (i == 0) {     // если число первое
+			result = a;   // то итоговый результат на экране равен числу с дисплея
+
+			dump.push_back(a);// добавляем число в хранилище
+			ui.lcdNumber->display(result);// выводим число на экран
+			display_number.clear();//очищаем строку(QString) дисплея [125671] для ввода следующего числа
+			i++;//и перемещаемся на следующую ячейку
 		}
-		else
+		else //иначе
 		{
-			if (a != 0)
+			if (a != 0) // если число не равно нулю
 			{
-				dump.push_back(a);
+				dump.push_back(a); // то добавляем в хранилище
 			}
-			for (; i < dump.size(); i++)
+			for (; i < dump.size(); i++)// идем циклом по массиву
 			{
-				result += dump[i];
+				result += dump[i];// и складываем все числа
 				
 			}
-			ui.lcdNumber->display(result);
-			display_number.clear();
+			ui.lcdNumber->display(result);//отображаем итоговый результат
+			display_number.clear();//очищаем строку(QString) дисплея [125671] для ввода следующего числа
 		}
 		break;
 	case '-':
@@ -339,11 +432,21 @@ void QtTest::total()
 			for (; i < dump.size(); i++)
 			{
 				result /= dump[i];
-			}
+		
+			}	
 			ui.lcdNumber->display(result);
 			display_number.clear();
 		}
+
+	
+
+
+
 		break;
+
+
+
+
 
 
 
@@ -361,7 +464,7 @@ void QtTest::slider_change_LCD_color() // функция меняет цвет дисплея
     ui.lcdNumber->setStyleSheet(color[ui.Slider_LCD_color->value()]);
 }
 
-void QtTest::slider_change_background_color() // функция меня цвет фона
+void QtTest::slider_change_background_color() // функция меняет цвет фона
 {
 	qApp->setStyleSheet(color[ui.Slider_Background_Color->value()]);
 	qApp->setStyleSheet("QMainWindow {"+ color[ui.Slider_Background_Color->value()]+"}");
@@ -369,3 +472,5 @@ void QtTest::slider_change_background_color() // функция меня цвет фона
 
 
 
+
+		

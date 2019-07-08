@@ -39,7 +39,7 @@
      <number>15</number>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushButton_pow">
     <property name="geometry">
      <rect>
       <x>18</x>
@@ -57,7 +57,7 @@
      <string>x²</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QPushButton" name="pushButton_sqrt">
     <property name="geometry">
      <rect>
       <x>102</x>
@@ -204,8 +204,8 @@
    <widget class="QPushButton" name="pushButton_percent">
     <property name="geometry">
      <rect>
-      <x>186</x>
-      <y>122</y>
+      <x>200</x>
+      <y>480</y>
       <width>77</width>
       <height>33</height>
      </rect>
@@ -471,6 +471,42 @@
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_percent">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>480</y>
+      <width>51</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="maxLength">
+     <number>3</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_arroy">
+    <property name="geometry">
+     <rect>
+      <x>186</x>
+      <y>122</y>
+      <width>77</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>-&gt;</string>
     </property>
    </widget>
   </widget>
