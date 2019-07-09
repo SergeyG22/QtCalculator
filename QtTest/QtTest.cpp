@@ -5,6 +5,7 @@
 #include <qpalette.h>
 #include <iostream>
 #include <qslider>
+#include <QKeyEvent>
 #include <math.h>
 
 QtTest::QtTest(QWidget *parent)
@@ -19,10 +20,8 @@ QtTest::QtTest(QWidget *parent)
 	pall.setColor(QPalette::Window, QColor(53, 53, 53));// Устанавливает цвет фона	
 	qApp->setPalette(pall);
 
-//	ui.lcdNumber->setDigitCount(15); //Задает количество чисел в цифровом поле 
-	
+	ui.lineEdit_percent->setValidator(validator);// Валидатор предотвращает ввод строковых значений в поле (%)percent
 
-//	connect(ui.lineEdit, &QLineEdit::textChanged, this, &QtTest::size_text_display);
 	connect(ui.pushButton_0, &QPushButton::clicked, this, &QtTest::slot_button_0);
 	connect(ui.pushButton_1,&QPushButton::clicked,  this,  &QtTest::slot_button_1);
 	connect(ui.pushButton_2, &QPushButton::clicked, this, &QtTest::slot_button_2);
@@ -53,20 +52,12 @@ QtTest::QtTest(QWidget *parent)
 
 }
 
-void QtTest::size_text_display() // функция позволяет вводить числовую строку и отображать ее на дисплее
-{
-	QValidator *validator = new QIntValidator();// валидатор предотвращает ввод строковых значений
-	ui.lcdNumber->display(a);
-	
-}
-
-//Функции slot_button... отображают вводимые цифры в виде текста (QString)
 
 void QtTest::slot_button_0() {
 	if (display_number.size() > 0)
 	{
 		ui.lcdNumber->display(display_number += StrButton_0);				
-		a = display_number.toInt();
+	//	a = display_number.toInt();
 	}
 	 
 	
@@ -140,7 +131,7 @@ void QtTest::clear_display() // Очищает дисплей, сбрасывает на нуль
 	k2 = true;
 }
  
-void QtTest::minus()
+void QtTest::minus() // вычитание
 {
 	operand = '-';
 	a = display_number.toInt();
@@ -170,7 +161,7 @@ void QtTest::minus()
 }
 
 
-void QtTest::plus()
+void QtTest::plus() // сложение
 {
 	operand = '+';
 	a = display_number.toInt();
@@ -201,7 +192,7 @@ void QtTest::plus()
 	
 }
 
-void QtTest::share()
+void QtTest::share() // деление
 {
 	operand = '/';
 	a = display_number.toInt();
@@ -233,7 +224,7 @@ void QtTest::share()
 
 }
 
-void QtTest::multiply()
+void QtTest::multiply()//умножение
 {
 	operand = '*';
 	a = display_number.toInt();
@@ -262,7 +253,7 @@ void QtTest::multiply()
 	
 }
 
-int QtTest::pow_calculator()// функция возведения в степень ДОДЕЛАТЬ!!!
+int QtTest::pow_calculator()// функция возведения в степень (ДОДЕЛАТЬ сложение с результатом)!!!
 {
 	if (k1) {
 		a = display_number.toInt(); // получаем число
@@ -283,7 +274,7 @@ int QtTest::pow_calculator()// функция возведения в степень ДОДЕЛАТЬ!!!
 	return result;
 }
 
-double QtTest::sqrt_calculator()// функция вычисления корня квадратного ДОДЕЛАТЬ!!!
+double QtTest::sqrt_calculator()// функция вычисления корня квадратного (ДОДЕЛАТЬ сложение с результатом)!!!
 {
 	if (k2) {
 		a = display_number.toInt(); // получаем число
@@ -297,31 +288,23 @@ double QtTest::sqrt_calculator()// функция вычисления корня квадратного ДОДЕЛАТЬ
 		result = sqrt(result);
 		ui.lcdNumber->display(result);// отображаем
 		display_number.clear();
-
 	}
-
-
-
 	return result;
 }
 
-double QtTest::percent_calculator()
+double QtTest::percent_calculator() // функция расчитывает процент от числа
 {
 	a = display_number.toInt();	
 	result = ((double)a / 100) * ui.lineEdit_percent->text().toInt();
 	ui.lcdNumber->display(result);
-
-
-
 	return 0;
 }
 
-void QtTest::arroy()// функция удаляет последнее введенное число Доделать!!!
+void QtTest::arroy()// функция удаляет последнее введенное число
 {
-	display_number.chop(1);
-	
-
-
+	display_number.chop(1);	
+	a = display_number.toInt();	
+	ui.lcdNumber->display(a);
 }
 
 
@@ -437,26 +420,8 @@ void QtTest::total()
 			ui.lcdNumber->display(result);
 			display_number.clear();
 		}
-
-	
-
-
-
 		break;
-
-
-
-
-
-
-
 	}
-
-
-
-
-
-
 }
 
 void QtTest::slider_change_LCD_color() // функция меняет цвет дисплея
@@ -470,7 +435,26 @@ void QtTest::slider_change_background_color() // функция меняет цвет фона
 	qApp->setStyleSheet("QMainWindow {"+ color[ui.Slider_Background_Color->value()]+"}");
 }
 
+void QtTest::keyPressEvent(QKeyEvent *event) // обработчик событий ввода с клавиш клавиатуры
+{
+	int key = event->key();
+	
+	switch (event->key())
+	{
+	case Qt::Key_0: if (display_number.size() > 0) { ui.lcdNumber->display(display_number += StrButton_0); } break;
+	case Qt::Key_1: ui.lcdNumber->display(display_number += StrButton_1); break;
+	case Qt::Key_2: ui.lcdNumber->display(display_number += StrButton_2); break;
+	case Qt::Key_3: ui.lcdNumber->display(display_number += StrButton_3); break;
+	case Qt::Key_4: ui.lcdNumber->display(display_number += StrButton_4); break;
+	case Qt::Key_5: ui.lcdNumber->display(display_number += StrButton_5); break;
+	case Qt::Key_6: ui.lcdNumber->display(display_number += StrButton_6); break;
+	case Qt::Key_7: ui.lcdNumber->display(display_number += StrButton_7); break;
+	case Qt::Key_8: ui.lcdNumber->display(display_number += StrButton_8); break;
+	case Qt::Key_9: ui.lcdNumber->display(display_number += StrButton_9); break;
+	}
 
+
+}
 
 
 		

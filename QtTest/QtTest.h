@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include <qpalette.h>
+#include <qvalidator.h>
 #include "ui_QtTest.h"
 
 class QtTest : public QMainWindow
@@ -12,6 +13,7 @@ public:
 	QtTest(QWidget *parent = Q_NULLPTR);
 	QPalette pall;
 	QVector<int>dump;
+	QValidator *validator = new QIntValidator();
 	QString display_number;
 	QString StrButton_0 = '0';
 	QString StrButton_1 = '1';
@@ -45,7 +47,7 @@ private:
 signals:
 	int size_text();
 private slots:
-	void size_text_display();
+	virtual void keyPressEvent(QKeyEvent * event);
 	void slot_button_0();
 	void slot_button_1();
 	void slot_button_2();
