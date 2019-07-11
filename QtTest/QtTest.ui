@@ -111,7 +111,7 @@
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_12">
+   <widget class="QPushButton" name="pushButton_off">
     <property name="geometry">
      <rect>
       <x>187</x>

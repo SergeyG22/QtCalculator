@@ -20,7 +20,7 @@ QtTest::QtTest(QWidget *parent)
 	pall.setColor(QPalette::Window, QColor(53, 53, 53));// Устанавливает цвет фона	
 	qApp->setPalette(pall);
 
-	ui.lineEdit_percent->setValidator(validator);// Валидатор предотвращает ввод строковых значений в поле (%)percent
+	ui.lineEdit_percent->setValidator(validator);// Валидатор предотвращает ввод строковых значений в поле процент((%)percent)
 
 	connect(ui.pushButton_0, &QPushButton::clicked, this, &QtTest::slot_button_0);
 	connect(ui.pushButton_1,&QPushButton::clicked,  this,  &QtTest::slot_button_1);
@@ -32,6 +32,8 @@ QtTest::QtTest(QWidget *parent)
 	connect(ui.pushButton_7, &QPushButton::clicked, this, &QtTest::slot_button_7);
 	connect(ui.pushButton_8, &QPushButton::clicked, this, &QtTest::slot_button_8);
 	connect(ui.pushButton_9, &QPushButton::clicked, this, &QtTest::slot_button_9);
+	connect(ui.pushButton_point, &QPushButton::clicked, this, &QtTest::point);
+
 
 	connect(ui.pushButton_clear, &QPushButton::clicked, this, &QtTest::clear_display);
 
@@ -49,16 +51,17 @@ QtTest::QtTest(QWidget *parent)
 	connect(ui.pushButton_percent, &QPushButton::clicked, this, &QtTest::percent_calculator);
 
 	connect(ui.pushButton_arroy, &QPushButton::clicked, this, &QtTest::arroy);
+	connect(ui.pushButton_off, &QPushButton::clicked, qApp, &QApplication::closeAllWindows);//Функция закрывает приложение
+
 
 }
 
 
 void QtTest::slot_button_0() {
-	if (display_number.size() > 0)
-	{
+	//if (display_number.size() > 0)
+	//{
 		ui.lcdNumber->display(display_number += StrButton_0);				
-	//	a = display_number.toInt();
-	}
+	//}
 	 
 	
 }
@@ -109,7 +112,22 @@ void QtTest::slot_button_9() {
 	
 }
 	
+void QtTest::point() //функция реализует ввод десятичной точки 
+{
+	if (bool_point && display_number.size()>0) {  // условие блокирует ввод более одной точки одновременно
+		ui.lcdNumber->display(display_number += StrPoint);
+		bool_point = false;
+	}
 
+/*	for (int i = 0; i < display_number.size(); ++i)
+		if (display_number[i] == ".")
+		{
+			bool_point = false;
+		}
+		else
+			bool_point = true;
+			*/
+}
 
 
 
@@ -119,13 +137,14 @@ void QtTest::slot_button_9() {
 
 //======================================================
 
-void QtTest::clear_display() // Очищает дисплей, сбрасывает на нуль
+void QtTest::clear_display() // Очищает дисплей, сбрасывает все параметры на нуль
 {
 	display_number.clear();
 	dump.clear();
 	result = 0;
 	ui.lcdNumber->display(0);
 	ui.lineEdit_percent->clear();
+	bool_point = true;
 	i = 0;
 	k1 = true;
 	k2 = true;
@@ -134,12 +153,13 @@ void QtTest::clear_display() // Очищает дисплей, сбрасывает на нуль
 void QtTest::minus() // вычитание
 {
 	operand = '-';
-	a = display_number.toInt();
+	a = display_number.toDouble();
 	if (i == 0) {
 		result = a;
 		dump.push_back(a);
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 		i++;
 	}
 	else
@@ -157,6 +177,7 @@ void QtTest::minus() // вычитание
 		}
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 	}
 }
 
@@ -164,12 +185,13 @@ void QtTest::minus() // вычитание
 void QtTest::plus() // сложение
 {
 	operand = '+';
-	a = display_number.toInt();
+	a = display_number.toDouble();
 	if (i == 0) {
 		result = a;	
 		dump.push_back(a);
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 		i++;
 	}
 	else
@@ -186,6 +208,7 @@ void QtTest::plus() // сложение
 		}
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 	}
 	
 
@@ -195,12 +218,13 @@ void QtTest::plus() // сложение
 void QtTest::share() // деление
 {
 	operand = '/';
-	a = display_number.toInt();
+	a = display_number.toDouble();
 	if (i == 0) {
 		result = a;
 		dump.push_back(a);
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 		i++;
 	}
 	else
@@ -217,6 +241,7 @@ void QtTest::share() // деление
 		}
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 	}
 
 
@@ -227,12 +252,13 @@ void QtTest::share() // деление
 void QtTest::multiply()//умножение
 {
 	operand = '*';
-	a = display_number.toInt();
+	a = display_number.toDouble();
 	if (i == 0) {
 		result = a;
 		dump.push_back(a);
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 		i++;
 	}
 	else
@@ -249,6 +275,7 @@ void QtTest::multiply()//умножение
 		}
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 	}
 	
 }
@@ -256,10 +283,11 @@ void QtTest::multiply()//умножение
 int QtTest::pow_calculator()// функция возведения в степень (ДОДЕЛАТЬ сложение с результатом)!!!
 {
 	if (k1) {
-		a = display_number.toInt(); // получаем число
+		a = display_number.toDouble(); // получаем число
 		result = pow(a, 2);// получаем результат
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 		k1 = false;
 		
 	}
@@ -267,6 +295,7 @@ int QtTest::pow_calculator()// функция возведения в степень (ДОДЕЛАТЬ сложение с
 		result = pow(result, 2);
 		ui.lcdNumber->display(result);// отображаем
 		display_number.clear();
+		bool_point = true;
 		
 	}
 	// result надо возвести опять в квадрат при следующем вводе
@@ -277,10 +306,11 @@ int QtTest::pow_calculator()// функция возведения в степень (ДОДЕЛАТЬ сложение с
 double QtTest::sqrt_calculator()// функция вычисления корня квадратного (ДОДЕЛАТЬ сложение с результатом)!!!
 {
 	if (k2) {
-		a = display_number.toInt(); // получаем число
+		a = display_number.toDouble(); // получаем число
 		result = sqrt(a);// получаем результат
 		ui.lcdNumber->display(result);
 		display_number.clear();
+		bool_point = true;
 		k2 = false;
 
 	}
@@ -288,22 +318,26 @@ double QtTest::sqrt_calculator()// функция вычисления корня квадратного (ДОДЕЛАТ
 		result = sqrt(result);
 		ui.lcdNumber->display(result);// отображаем
 		display_number.clear();
+		bool_point = true;
 	}
 	return result;
 }
 
 double QtTest::percent_calculator() // функция расчитывает процент от числа
 {
-	a = display_number.toInt();	
+	a = display_number.toDouble();
 	result = ((double)a / 100) * ui.lineEdit_percent->text().toInt();
 	ui.lcdNumber->display(result);
 	return 0;
 }
 
+//================================================================
+
+
 void QtTest::arroy()// функция удаляет последнее введенное число
 {
 	display_number.chop(1);	
-	a = display_number.toInt();	
+	a = display_number.toDouble();
 	ui.lcdNumber->display(a);
 }
 
@@ -312,15 +346,11 @@ void QtTest::arroy()// функция удаляет последнее введенное число
 
 
 
-
-
-
-
-void QtTest::total()
+void QtTest::total()// функция считает результат при нажатии кнопки "="
 {
 	switch (operand) {
 	case '+':
-		a = display_number.toInt();//получаем строку с дисплея и преобразуем ее в число		
+		a = display_number.toDouble();//получаем строку с дисплея и преобразуем ее в число		
 		std::cout << result<<std::endl;
 	
 		if (i == 0) {     // если число первое
@@ -329,6 +359,7 @@ void QtTest::total()
 			dump.push_back(a);// добавляем число в хранилище
 			ui.lcdNumber->display(result);// выводим число на экран
 			display_number.clear();//очищаем строку(QString) дисплея [125671] для ввода следующего числа
+			bool_point = true;
 			i++;//и перемещаемся на следующую ячейку
 		}
 		else //иначе
@@ -344,16 +375,18 @@ void QtTest::total()
 			}
 			ui.lcdNumber->display(result);//отображаем итоговый результат
 			display_number.clear();//очищаем строку(QString) дисплея [125671] для ввода следующего числа
+			bool_point = true;
 		}
 		break;
 	case '-':
-		a = display_number.toInt();
+		a = display_number.toDouble();
 		if (i == 0) {
 			
 			result = a;
 			dump.push_back(a);
 			ui.lcdNumber->display(result);
 			display_number.clear();
+			bool_point = true;
 			i++;
 		}
 		else
@@ -370,16 +403,18 @@ void QtTest::total()
 			}
 			ui.lcdNumber->display(result);
 			display_number.clear();
+			bool_point = true;
 		}
 		break;
 	case '*':
-		a = display_number.toInt();
+		a = display_number.toDouble();
 		if (i == 0) {
 			result = a;
 			
 			dump.push_back(a);
 			ui.lcdNumber->display(result);
 			display_number.clear();
+			bool_point = true;
 			i++;
 		}
 		else
@@ -395,15 +430,17 @@ void QtTest::total()
 			}
 			ui.lcdNumber->display(result);
 			display_number.clear();
+			bool_point = true;
 		}
 		break;
 	case '/':
-		a = display_number.toInt();
+		a = display_number.toDouble();
 		if (i == 0) {
 			result = a;
 			dump.push_back(a);
 			ui.lcdNumber->display(result);
 			display_number.clear();
+			bool_point = true;
 			i++;
 		}
 		else
@@ -419,17 +456,18 @@ void QtTest::total()
 			}	
 			ui.lcdNumber->display(result);
 			display_number.clear();
+			bool_point = true;
 		}
 		break;
 	}
 }
 
-void QtTest::slider_change_LCD_color() // функция меняет цвет дисплея
+void QtTest::slider_change_LCD_color()const // функция меняет цвет дисплея
 {	 
     ui.lcdNumber->setStyleSheet(color[ui.Slider_LCD_color->value()]);
 }
 
-void QtTest::slider_change_background_color() // функция меняет цвет фона
+void QtTest::slider_change_background_color()const // функция меняет цвет фона
 {
 	qApp->setStyleSheet(color[ui.Slider_Background_Color->value()]);
 	qApp->setStyleSheet("QMainWindow {"+ color[ui.Slider_Background_Color->value()]+"}");
@@ -451,10 +489,14 @@ void QtTest::keyPressEvent(QKeyEvent *event) // обработчик событий ввода с клави
 	case Qt::Key_7: ui.lcdNumber->display(display_number += StrButton_7); break;
 	case Qt::Key_8: ui.lcdNumber->display(display_number += StrButton_8); break;
 	case Qt::Key_9: ui.lcdNumber->display(display_number += StrButton_9); break;
+	case Qt::Key_Backspace:arroy(); break;
+	case Qt::Key_Return:total(); break;
+
 	}
 
 
 }
+
 
 
 		

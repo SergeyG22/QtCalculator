@@ -13,4 +13,5 @@ int main(int argc, char *argv[])
 	QtTest w;
 	w.show();
 	return a.exec();
+	
 }

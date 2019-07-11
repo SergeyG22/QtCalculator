@@ -31,7 +31,7 @@ public:
     QPushButton *pushButton_pow;
     QPushButton *pushButton_sqrt;
     QPushButton *pushButton_plus;
-    QPushButton *pushButton_12;
+    QPushButton *pushButton_off;
     QPushButton *pushButton_clear;
     QPushButton *pushButton_delenie;
     QPushButton *pushButton_umnojenie;
@@ -106,10 +106,10 @@ public:
 "    text-decoration: none;\n"
 "    text-shadow: 0 1px rgba(255,255,255,0.7);\n"
 "}"));
-        pushButton_12 = new QPushButton(centralWidget);
-        pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
-        pushButton_12->setGeometry(QRect(187, 412, 161, 33));
-        pushButton_12->setFont(font2);
+        pushButton_off = new QPushButton(centralWidget);
+        pushButton_off->setObjectName(QStringLiteral("pushButton_off"));
+        pushButton_off->setGeometry(QRect(187, 412, 161, 33));
+        pushButton_off->setFont(font2);
         pushButton_clear = new QPushButton(centralWidget);
         pushButton_clear->setObjectName(QStringLiteral("pushButton_clear"));
         pushButton_clear->setGeometry(QRect(17, 412, 161, 33));
@@ -222,7 +222,7 @@ public:
         pushButton_pow->setText(QApplication::translate("QtTestClass", "x\302\262", nullptr));
         pushButton_sqrt->setText(QApplication::translate("QtTestClass", "\342\210\232", nullptr));
         pushButton_plus->setText(QApplication::translate("QtTestClass", "+", nullptr));
-        pushButton_12->setText(QApplication::translate("QtTestClass", "off", nullptr));
+        pushButton_off->setText(QApplication::translate("QtTestClass", "off", nullptr));
         pushButton_clear->setText(QApplication::translate("QtTestClass", "clear", nullptr));
         pushButton_delenie->setText(QApplication::translate("QtTestClass", "\303\267", nullptr));
         pushButton_umnojenie->setText(QApplication::translate("QtTestClass", "x", nullptr));
