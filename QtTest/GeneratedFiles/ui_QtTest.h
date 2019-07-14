@@ -438,7 +438,15 @@ public:
 "}"));
         checkBox_change_color = new QCheckBox(centralWidget);
         checkBox_change_color->setObjectName(QStringLiteral("checkBox_change_color"));
-        checkBox_change_color->setGeometry(QRect(230, 520, 101, 20));
+        checkBox_change_color->setGeometry(QRect(210, 520, 121, 20));
+        QFont font4;
+        font4.setFamily(QStringLiteral("Arial"));
+        font4.setPointSize(10);
+        font4.setItalic(true);
+        checkBox_change_color->setFont(font4);
+        checkBox_change_color->setStyleSheet(QLatin1String("QCheckBox{\n"
+"color: white\n"
+"}"));
         QtTestClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QtTestClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));

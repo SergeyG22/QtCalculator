@@ -27,28 +27,22 @@ public:
 	QString StrButton_9 = '9';
 	QString StrPoint = '.';
 	QString color[9] = { 
-		"background-color: red",
+		"background-color: black",
 		"background-color: blue",
 		"background-color: green",
-		"background-color: yellow",
-		"background-color: grey",
+		"background-color: purple",
 		"background-color: brown",
-		"background-color: white",
+		"background-color: rgb(238,29,240)",
+		"background-color: grey",
 		"background-color: orange",
-		"background-color: purple"
+		"background-color: red",
 	};
 	double a;
-	int x = 0;
 	int i = 0;
-	int b = 0;
     double result;
 	char operand;
 	bool bool_point = true;
-	bool k1 = true;
-	bool k2 = true;
 	virtual void keyPressEvent(QKeyEvent * event);
-	double pow_a=0;//
-	double sqrt_b=0;//
 private:
 	Ui::QtTestClass ui;
 signals:
@@ -72,7 +66,7 @@ private slots:
 	void multiply();
 	void total();
 	void slider_change_background_color();
-	int pow_calculator();
+	double pow_calculator();
 	double sqrt_calculator();
 	double percent_calculator();
 	void arroy();

@@ -793,11 +793,23 @@ color: white
    <widget class="QCheckBox" name="checkBox_change_color">
     <property name="geometry">
      <rect>
-      <x>230</x>
+      <x>210</x>
       <y>520</y>
-      <width>101</width>
+      <width>121</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox{
+color: white
+}</string>
     </property>
     <property name="text">
      <string>change color</string>
