@@ -18,6 +18,12 @@
   <property name="windowTitle">
    <string>QtTest</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow
+{
+border-radius: 6px;
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLCDNumber" name="lcdNumber">
     <property name="geometry">
@@ -34,6 +40,11 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLCDNumber{
+background-color:white;
+}</string>
     </property>
     <property name="digitCount">
      <number>15</number>
@@ -53,6 +64,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>x²</string>
     </property>
@@ -70,6 +93,18 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
     </property>
     <property name="text">
      <string>√</string>
@@ -105,7 +140,17 @@
     /* Font styles */
     text-decoration: none;
     text-shadow: 0 1px rgba(255,255,255,0.7);
-}</string>
+}
+QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
     </property>
     <property name="text">
      <string>+</string>
@@ -125,6 +170,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(67, 227, 27);
+}
+</string>
+    </property>
     <property name="text">
      <string>off</string>
     </property>
@@ -142,6 +199,19 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(67, 227, 27);
+
+}
+</string>
     </property>
     <property name="text">
      <string>clear</string>
@@ -161,6 +231,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>÷</string>
     </property>
@@ -178,6 +260,18 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
     </property>
     <property name="text">
      <string>x</string>
@@ -197,6 +291,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>.</string>
     </property>
@@ -215,6 +321,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>%</string>
     </property>
@@ -232,6 +350,18 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
     </property>
     <property name="text">
      <string>=</string>
@@ -254,6 +384,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>0</string>
     </property>
@@ -271,6 +413,18 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
     </property>
     <property name="text">
      <string>1</string>
@@ -290,6 +444,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>2</string>
     </property>
@@ -307,6 +473,18 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
     </property>
     <property name="text">
      <string>3</string>
@@ -326,6 +504,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>4</string>
     </property>
@@ -344,6 +534,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>5</string>
     </property>
@@ -361,6 +563,18 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
     </property>
     <property name="text">
      <string>6</string>
@@ -381,7 +595,17 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+
+</string>
     </property>
     <property name="text">
      <string>7</string>
@@ -401,6 +625,18 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>8</string>
     </property>
@@ -418,6 +654,18 @@
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
     </property>
     <property name="text">
      <string>9</string>
@@ -437,31 +685,27 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>-</string>
-    </property>
-   </widget>
-   <widget class="QSlider" name="Slider_LCD_color">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>470</y>
-      <width>160</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <number>8</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
    <widget class="QSlider" name="Slider_Background_Color">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>510</y>
+      <y>490</y>
       <width>160</width>
       <height>22</height>
      </rect>
@@ -505,8 +749,58 @@
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton { 
+background-color: white; 
+border-style: solid;
+border-radius: 6px;
+}
+QPushButton:hover:!pressed {  
+border: 1px solid  #060606 ; 
+background-color:rgb(238, 130, 238);
+}
+</string>
+    </property>
     <property name="text">
      <string>-&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>480</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>25</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{
+color: white
+}</string>
+    </property>
+    <property name="text">
+     <string>Casio</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_change_color">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>520</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>change color</string>
     </property>
    </widget>
   </widget>

@@ -38,13 +38,17 @@ public:
 		"background-color: purple"
 	};
 	double a;
+	int x = 0;
 	int i = 0;
+	int b = 0;
     double result;
 	char operand;
 	bool bool_point = true;
 	bool k1 = true;
 	bool k2 = true;
 	virtual void keyPressEvent(QKeyEvent * event);
+	double pow_a=0;//
+	double sqrt_b=0;//
 private:
 	Ui::QtTestClass ui;
 signals:
@@ -67,10 +71,11 @@ private slots:
 	void share();
 	void multiply();
 	void total();
-	void slider_change_LCD_color()const;
-	void slider_change_background_color()const;
+	void slider_change_background_color();
 	int pow_calculator();
 	double sqrt_calculator();
 	double percent_calculator();
 	void arroy();
+	void cb_change_color();
+	bool pressed()  { return true; };
 };

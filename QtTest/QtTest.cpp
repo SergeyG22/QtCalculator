@@ -20,6 +20,7 @@ QtTest::QtTest(QWidget *parent)
 	pall.setColor(QPalette::Window, QColor(53, 53, 53));// Устанавливает цвет фона	
 	qApp->setPalette(pall);
 
+	ui.Slider_Background_Color->setVisible(false);// Делает слайдер невидимым при запуске программы
 	ui.lineEdit_percent->setValidator(validator);// Валидатор предотвращает ввод строковых значений в поле процент((%)percent)
 
 	connect(ui.pushButton_0, &QPushButton::clicked, this, &QtTest::slot_button_0);
@@ -43,7 +44,7 @@ QtTest::QtTest(QWidget *parent)
 	connect(ui.pushButton_umnojenie, &QPushButton::clicked, this, &QtTest::multiply);
 	connect(ui.pushButton_total,&QPushButton::clicked,this,&QtTest::total);
 
-	connect(ui.Slider_LCD_color,&QSlider::valueChanged,this,&QtTest::slider_change_LCD_color);
+
 	connect(ui.Slider_Background_Color,&QSlider::valueChanged,this,&QtTest::slider_change_background_color);
 	
 	connect(ui.pushButton_pow, &QPushButton::clicked, this, &QtTest::pow_calculator);
@@ -52,18 +53,15 @@ QtTest::QtTest(QWidget *parent)
 
 	connect(ui.pushButton_arroy, &QPushButton::clicked, this, &QtTest::arroy);
 	connect(ui.pushButton_off, &QPushButton::clicked, qApp, &QApplication::closeAllWindows);//Функция закрывает приложение
+	connect(ui.checkBox_change_color, &QCheckBox::stateChanged, this, &QtTest::cb_change_color);
+
 
 
 }
 
 
 void QtTest::slot_button_0() {
-	//if (display_number.size() > 0)
-	//{
-		ui.lcdNumber->display(display_number += StrButton_0);				
-	//}
-	 
-	
+		ui.lcdNumber->display(display_number += StrButton_0);					
 }
 
 void QtTest::slot_button_1() {
@@ -119,14 +117,6 @@ void QtTest::point() //функция реализует ввод десятичной точки
 		bool_point = false;
 	}
 
-/*	for (int i = 0; i < display_number.size(); ++i)
-		if (display_number[i] == ".")
-		{
-			bool_point = false;
-		}
-		else
-			bool_point = true;
-			*/
 }
 
 
@@ -148,6 +138,7 @@ void QtTest::clear_display() // Очищает дисплей, сбрасывает все параметры на нул
 	i = 0;
 	k1 = true;
 	k2 = true;
+	x=0;
 }
  
 void QtTest::minus() // вычитание
@@ -186,6 +177,7 @@ void QtTest::plus() // сложение
 {
 	operand = '+';
 	a = display_number.toDouble();
+
 	if (i == 0) {
 		result = a;	
 		dump.push_back(a);
@@ -204,7 +196,7 @@ void QtTest::plus() // сложение
 		for (; i < dump.size(); i++)
 		{
 			result += dump[i];
-			
+			//k1 = true;
 		}
 		ui.lcdNumber->display(result);
 		display_number.clear();
@@ -281,46 +273,40 @@ void QtTest::multiply()//умножение
 }
 
 int QtTest::pow_calculator()// функция возведения в степень (ДОДЕЛАТЬ сложение с результатом)!!!
-{
-	if (k1) {
-		a = display_number.toDouble(); // получаем число
-		result = pow(a, 2);// получаем результат
-		ui.lcdNumber->display(result);
-		display_number.clear();
-		bool_point = true;
-		k1 = false;
-		
+{	
+	if (i == 0)
+	{
+		a = display_number.toDouble();
+		     result = pow(a, 2);
+			 ui.lcdNumber->display(result);
+			 i++;
 	}
 	else {
 		result = pow(result, 2);
-		ui.lcdNumber->display(result);// отображаем
+		ui.lcdNumber->display(result);
 		display_number.clear();
-		bool_point = true;
-		
 	}
-	// result надо возвести опять в квадрат при следующем вводе
-	
-	return result;
+        return result;	
+
 }
 
 double QtTest::sqrt_calculator()// функция вычисления корня квадратного (ДОДЕЛАТЬ сложение с результатом)!!!
 {
-	if (k2) {
-		a = display_number.toDouble(); // получаем число
-		result = sqrt(a);// получаем результат
+	
+	if (i == 0)
+	{
+		a=display_number.toDouble();
+		result = sqrt(a);
 		ui.lcdNumber->display(result);
-		display_number.clear();
-		bool_point = true;
-		k2 = false;
-
+		i++;
 	}
 	else {
-		result = sqrt(result);
-		ui.lcdNumber->display(result);// отображаем
+		result = sqrt(result);// получаем результат
+		ui.lcdNumber->display(result);
 		display_number.clear();
-		bool_point = true;
 	}
-	return result;
+	
+	    return result;
 }
 
 double QtTest::percent_calculator() // функция расчитывает процент от числа
@@ -351,31 +337,26 @@ void QtTest::total()// функция считает результат при нажатии кнопки "="
 	switch (operand) {
 	case '+':
 		a = display_number.toDouble();//получаем строку с дисплея и преобразуем ее в число		
-		std::cout << result<<std::endl;
-	
 		if (i == 0) {     // если число первое
 			result = a;   // то итоговый результат на экране равен числу с дисплея
-
-			dump.push_back(a);// добавляем число в хранилище
-			ui.lcdNumber->display(result);// выводим число на экран
+			dump.push_back(a);// добавляем число в хранилище			ui.lcdNumber->display(result);// выводим число на экран
 			display_number.clear();//очищаем строку(QString) дисплея [125671] для ввода следующего числа
 			bool_point = true;
 			i++;//и перемещаемся на следующую ячейку
 		}
 		else //иначе
-		{
-			if (a != 0) // если число не равно нулю
+		{                                            
+			if (a != 0) // если число не равно нулю  
 			{
 				dump.push_back(a); // то добавляем в хранилище
 			}
 			for (; i < dump.size(); i++)// идем циклом по массиву
 			{
 				result += dump[i];// и складываем все числа
-				
 			}
 			ui.lcdNumber->display(result);//отображаем итоговый результат
 			display_number.clear();//очищаем строку(QString) дисплея [125671] для ввода следующего числа
-			bool_point = true;
+		    bool_point = true;
 		}
 		break;
 	case '-':
@@ -462,15 +443,12 @@ void QtTest::total()// функция считает результат при нажатии кнопки "="
 	}
 }
 
-void QtTest::slider_change_LCD_color()const // функция меняет цвет дисплея
-{	 
-    ui.lcdNumber->setStyleSheet(color[ui.Slider_LCD_color->value()]);
-}
 
-void QtTest::slider_change_background_color()const // функция меняет цвет фона
+void QtTest::slider_change_background_color() // функция меняет цвет фона
 {
 	qApp->setStyleSheet(color[ui.Slider_Background_Color->value()]);
-	qApp->setStyleSheet("QMainWindow {"+ color[ui.Slider_Background_Color->value()]+"}");
+	qApp->setStyleSheet("QMainWindow {"+ color[ui.Slider_Background_Color->value()]+"}");	
+
 }
 
 void QtTest::keyPressEvent(QKeyEvent *event) // обработчик событий ввода с клавиш клавиатуры
@@ -497,6 +475,34 @@ void QtTest::keyPressEvent(QKeyEvent *event) // обработчик событий ввода с клави
 
 }
 
+void QtTest::cb_change_color()// функция отображает слайдер если  в чекбокс стоит галочка
+{
+	if (ui.checkBox_change_color->checkState() )
+	{
+		ui.Slider_Background_Color->setVisible(true);
+		ui.label->setVisible(false);
+	}
+	else {
+		ui.Slider_Background_Color->setVisible(false);
+		ui.label->setVisible(true);
+	}
 
 
-		
+
+}
+/*
+if (k2) {
+	result = display_number.toDouble(); // получаем число
+	result = sqrt(result);// получаем результат
+	ui.lcdNumber->display(result);// отображаем 
+	display_number.clear();// очищаем строку
+	bool_point = true;
+	k2 = false;
+}
+else {
+	result = sqrt(result);
+	ui.lcdNumber->display(result);// отображаем
+	display_number.clear();
+	bool_point = true;
+}
+return result;*/

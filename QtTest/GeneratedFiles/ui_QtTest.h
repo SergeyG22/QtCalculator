@@ -11,7 +11,9 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QLCDNumber>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -49,10 +51,11 @@ public:
     QPushButton *pushButton_8;
     QPushButton *pushButton_9;
     QPushButton *pushButton_minus;
-    QSlider *Slider_LCD_color;
     QSlider *Slider_Background_Color;
     QLineEdit *lineEdit_percent;
     QPushButton *pushButton_arroy;
+    QLabel *label;
+    QCheckBox *checkBox_change_color;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -65,6 +68,10 @@ public:
         QFont font;
         font.setPointSize(8);
         QtTestClass->setFont(font);
+        QtTestClass->setStyleSheet(QLatin1String("QMainWindow\n"
+"{\n"
+"border-radius: 6px;\n"
+"}"));
         centralWidget = new QWidget(QtTestClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         lcdNumber = new QLCDNumber(centralWidget);
@@ -75,6 +82,9 @@ public:
         font1.setBold(false);
         font1.setWeight(50);
         lcdNumber->setFont(font1);
+        lcdNumber->setStyleSheet(QLatin1String("QLCDNumber{\n"
+"background-color:white;\n"
+"}"));
         lcdNumber->setDigitCount(15);
         pushButton_pow = new QPushButton(centralWidget);
         pushButton_pow->setObjectName(QStringLiteral("pushButton_pow"));
@@ -82,10 +92,30 @@ public:
         QFont font2;
         font2.setPointSize(12);
         pushButton_pow->setFont(font2);
+        pushButton_pow->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_sqrt = new QPushButton(centralWidget);
         pushButton_sqrt->setObjectName(QStringLiteral("pushButton_sqrt"));
         pushButton_sqrt->setGeometry(QRect(102, 122, 77, 33));
         pushButton_sqrt->setFont(font2);
+        pushButton_sqrt->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_plus = new QPushButton(centralWidget);
         pushButton_plus->setObjectName(QStringLiteral("pushButton_plus"));
         pushButton_plus->setGeometry(QRect(277, 300, 71, 91));
@@ -105,89 +135,275 @@ public:
 "    /* Font styles */\n"
 "    text-decoration: none;\n"
 "    text-shadow: 0 1px rgba(255,255,255,0.7);\n"
-"}"));
+"}\n"
+"QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_off = new QPushButton(centralWidget);
         pushButton_off->setObjectName(QStringLiteral("pushButton_off"));
         pushButton_off->setGeometry(QRect(187, 412, 161, 33));
         pushButton_off->setFont(font2);
+        pushButton_off->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(67, 227, 27);\n"
+"}\n"
+""));
         pushButton_clear = new QPushButton(centralWidget);
         pushButton_clear->setObjectName(QStringLiteral("pushButton_clear"));
         pushButton_clear->setGeometry(QRect(17, 412, 161, 33));
         pushButton_clear->setFont(font2);
+        pushButton_clear->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(67, 227, 27);\n"
+"\n"
+"}\n"
+""));
         pushButton_delenie = new QPushButton(centralWidget);
         pushButton_delenie->setObjectName(QStringLiteral("pushButton_delenie"));
         pushButton_delenie->setGeometry(QRect(270, 122, 77, 33));
         pushButton_delenie->setFont(font2);
+        pushButton_delenie->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_umnojenie = new QPushButton(centralWidget);
         pushButton_umnojenie->setObjectName(QStringLiteral("pushButton_umnojenie"));
         pushButton_umnojenie->setGeometry(QRect(270, 181, 77, 33));
         pushButton_umnojenie->setFont(font2);
+        pushButton_umnojenie->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_point = new QPushButton(centralWidget);
         pushButton_point->setObjectName(QStringLiteral("pushButton_point"));
         pushButton_point->setGeometry(QRect(102, 358, 77, 33));
         pushButton_point->setFont(font2);
+        pushButton_point->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_percent = new QPushButton(centralWidget);
         pushButton_percent->setObjectName(QStringLiteral("pushButton_percent"));
         pushButton_percent->setGeometry(QRect(200, 480, 77, 33));
         pushButton_percent->setFont(font2);
+        pushButton_percent->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_total = new QPushButton(centralWidget);
         pushButton_total->setObjectName(QStringLiteral("pushButton_total"));
         pushButton_total->setGeometry(QRect(186, 358, 77, 33));
         pushButton_total->setFont(font2);
+        pushButton_total->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_0 = new QPushButton(centralWidget);
         pushButton_0->setObjectName(QStringLiteral("pushButton_0"));
         pushButton_0->setEnabled(true);
         pushButton_0->setGeometry(QRect(18, 358, 77, 33));
         pushButton_0->setFont(font2);
+        pushButton_0->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_1 = new QPushButton(centralWidget);
         pushButton_1->setObjectName(QStringLiteral("pushButton_1"));
         pushButton_1->setGeometry(QRect(18, 299, 77, 33));
         pushButton_1->setFont(font2);
+        pushButton_1->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
         pushButton_2->setGeometry(QRect(102, 299, 77, 33));
         pushButton_2->setFont(font2);
+        pushButton_2->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
         pushButton_3->setGeometry(QRect(186, 299, 77, 33));
         pushButton_3->setFont(font2);
+        pushButton_3->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_4 = new QPushButton(centralWidget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
         pushButton_4->setGeometry(QRect(18, 240, 77, 33));
         pushButton_4->setFont(font2);
+        pushButton_4->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_5 = new QPushButton(centralWidget);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
         pushButton_5->setGeometry(QRect(102, 240, 77, 33));
         pushButton_5->setFont(font2);
+        pushButton_5->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_6 = new QPushButton(centralWidget);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
         pushButton_6->setGeometry(QRect(186, 240, 77, 33));
         pushButton_6->setFont(font2);
+        pushButton_6->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_7 = new QPushButton(centralWidget);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
         pushButton_7->setGeometry(QRect(18, 181, 77, 33));
         pushButton_7->setFont(font2);
-        pushButton_7->setStyleSheet(QStringLiteral(""));
+        pushButton_7->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+"\n"
+""));
         pushButton_8 = new QPushButton(centralWidget);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
         pushButton_8->setGeometry(QRect(102, 181, 77, 33));
         pushButton_8->setFont(font2);
+        pushButton_8->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_9 = new QPushButton(centralWidget);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
         pushButton_9->setGeometry(QRect(186, 181, 77, 33));
         pushButton_9->setFont(font2);
+        pushButton_9->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         pushButton_minus = new QPushButton(centralWidget);
         pushButton_minus->setObjectName(QStringLiteral("pushButton_minus"));
         pushButton_minus->setGeometry(QRect(270, 240, 77, 33));
         pushButton_minus->setFont(font2);
-        Slider_LCD_color = new QSlider(centralWidget);
-        Slider_LCD_color->setObjectName(QStringLiteral("Slider_LCD_color"));
-        Slider_LCD_color->setGeometry(QRect(30, 470, 160, 22));
-        Slider_LCD_color->setMaximum(8);
-        Slider_LCD_color->setOrientation(Qt::Horizontal);
+        pushButton_minus->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
         Slider_Background_Color = new QSlider(centralWidget);
         Slider_Background_Color->setObjectName(QStringLiteral("Slider_Background_Color"));
-        Slider_Background_Color->setGeometry(QRect(30, 510, 160, 22));
+        Slider_Background_Color->setGeometry(QRect(30, 490, 160, 22));
         Slider_Background_Color->setMaximum(8);
         Slider_Background_Color->setOrientation(Qt::Horizontal);
         lineEdit_percent = new QLineEdit(centralWidget);
@@ -199,6 +415,30 @@ public:
         pushButton_arroy->setObjectName(QStringLiteral("pushButton_arroy"));
         pushButton_arroy->setGeometry(QRect(186, 122, 77, 33));
         pushButton_arroy->setFont(font2);
+        pushButton_arroy->setStyleSheet(QLatin1String("QPushButton { \n"
+"background-color: white; \n"
+"border-style: solid;\n"
+"border-radius: 6px;\n"
+"}\n"
+"QPushButton:hover:!pressed {  \n"
+"border: 1px solid  #060606 ; \n"
+"background-color:rgb(238, 130, 238);\n"
+"}\n"
+""));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(50, 480, 121, 41));
+        QFont font3;
+        font3.setPointSize(25);
+        font3.setBold(true);
+        font3.setWeight(75);
+        label->setFont(font3);
+        label->setStyleSheet(QLatin1String("QLabel{\n"
+"color: white\n"
+"}"));
+        checkBox_change_color = new QCheckBox(centralWidget);
+        checkBox_change_color->setObjectName(QStringLiteral("checkBox_change_color"));
+        checkBox_change_color->setGeometry(QRect(230, 520, 101, 20));
         QtTestClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QtTestClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -241,6 +481,8 @@ public:
         pushButton_9->setText(QApplication::translate("QtTestClass", "9", nullptr));
         pushButton_minus->setText(QApplication::translate("QtTestClass", "-", nullptr));
         pushButton_arroy->setText(QApplication::translate("QtTestClass", "->", nullptr));
+        label->setText(QApplication::translate("QtTestClass", "Casio", nullptr));
+        checkBox_change_color->setText(QApplication::translate("QtTestClass", "change color", nullptr));
     } // retranslateUi
 
 };
