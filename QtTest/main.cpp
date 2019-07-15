@@ -2,6 +2,8 @@
 #include <QtWidgets/QApplication>
 #include <qfile.h>
 
+//utf-8// проверка корректности отображения шрифта
+
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);

@@ -3,7 +3,6 @@
 #include <qstring.h>
 #include <qvalidator.h>
 #include <qpalette.h>
-#include <iostream>
 #include <qslider>
 #include <QKeyEvent>
 #include <math.h>
