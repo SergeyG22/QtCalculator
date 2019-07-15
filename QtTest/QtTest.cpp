@@ -1,4 +1,4 @@
-#include "QtTest.h"
+п»ї#include "QtTest.h"
 #include <qmessagebox.h>
 #include <qstring.h>
 #include <qvalidator.h>
@@ -7,20 +7,22 @@
 #include <QKeyEvent>
 #include <math.h>
 
+//utf-8
+
 QtTest::QtTest(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	this->setWindowTitle(QString::fromLocal8Bit("Калькулятор")); // устанавливает имя окна
+	this->setWindowTitle(QString::fromLocal8Bit("РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ")); // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РёРјСЏ РѕРєРЅР°
 
-	this->setFixedWidth(369);  // фиксирует размер окна по ширине
-	this->setFixedHeight(610); // фиксирует размер окна по высоте
+	this->setFixedWidth(369);  // С„РёРєСЃРёСЂСѓРµС‚ СЂР°Р·РјРµСЂ РѕРєРЅР° РїРѕ С€РёСЂРёРЅРµ
+	this->setFixedHeight(610); // С„РёРєСЃРёСЂСѓРµС‚ СЂР°Р·РјРµСЂ РѕРєРЅР° РїРѕ РІС‹СЃРѕС‚Рµ
 	
-	pall.setColor(QPalette::Window, QColor(0, 0, 0));// Устанавливает цвет фона	
+	pall.setColor(QPalette::Window, QColor(0, 0, 0));// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С†РІРµС‚ С„РѕРЅР°	
 	qApp->setPalette(pall);
 
-	ui.Slider_Background_Color->setVisible(false);// Делает слайдер невидимым при запуске программы
-	ui.lineEdit_percent->setValidator(validator);// Валидатор предотвращает ввод строковых значений в поле процент((%)percent)
+	ui.Slider_Background_Color->setVisible(false);// Р”РµР»Р°РµС‚ СЃР»Р°Р№РґРµСЂ РЅРµРІРёРґРёРјС‹Рј РїСЂРё Р·Р°РїСѓСЃРєРµ РїСЂРѕРіСЂР°РјРјС‹
+	ui.lineEdit_percent->setValidator(validator);// Р’Р°Р»РёРґР°С‚РѕСЂ РїСЂРµРґРѕС‚РІСЂР°С‰Р°РµС‚ РІРІРѕРґ СЃС‚СЂРѕРєРѕРІС‹С… Р·РЅР°С‡РµРЅРёР№ РІ РїРѕР»Рµ РїСЂРѕС†РµРЅС‚((%)percent)
 
 	connect(ui.pushButton_0, &QPushButton::clicked, this, &QtTest::slot_button_0);
 	connect(ui.pushButton_1,&QPushButton::clicked,  this,  &QtTest::slot_button_1);
@@ -51,7 +53,7 @@ QtTest::QtTest(QWidget *parent)
 	connect(ui.pushButton_percent, &QPushButton::clicked, this, &QtTest::percent_calculator);
 
 	connect(ui.pushButton_arroy, &QPushButton::clicked, this, &QtTest::arroy);
-	connect(ui.pushButton_off, &QPushButton::clicked, qApp, &QApplication::closeAllWindows);//Функция закрывает приложение
+	connect(ui.pushButton_off, &QPushButton::clicked, qApp, &QApplication::closeAllWindows);//Р¤СѓРЅРєС†РёСЏ Р·Р°РєСЂС‹РІР°РµС‚ РїСЂРёР»РѕР¶РµРЅРёРµ
 	connect(ui.checkBox_change_color, &QCheckBox::stateChanged, this, &QtTest::cb_change_color);
 
 
@@ -109,9 +111,9 @@ void QtTest::slot_button_9() {
 	
 }
 	
-void QtTest::point() //функция реализует ввод десятичной точки 
+void QtTest::point() //С„СѓРЅРєС†РёСЏ СЂРµР°Р»РёР·СѓРµС‚ РІРІРѕРґ РґРµСЃСЏС‚РёС‡РЅРѕР№ С‚РѕС‡РєРё 
 {
-	if (bool_point && display_number.size()>0) {  // условие блокирует ввод более одной точки одновременно
+	if (bool_point && display_number.size()>0) {  // СѓСЃР»РѕРІРёРµ Р±Р»РѕРєРёСЂСѓРµС‚ РІРІРѕРґ Р±РѕР»РµРµ РѕРґРЅРѕР№ С‚РѕС‡РєРё РѕРґРЅРѕРІСЂРµРјРµРЅРЅРѕ
 		ui.lcdNumber->display(display_number += StrPoint);
 		bool_point = false;
 	}
@@ -126,7 +128,7 @@ void QtTest::point() //функция реализует ввод десятичной точки
 
 //======================================================
 
-void QtTest::clear_display() // Очищает дисплей, сбрасывает все параметры на нуль
+void QtTest::clear_display() // РћС‡РёС‰Р°РµС‚ РґРёСЃРїР»РµР№, СЃР±СЂР°СЃС‹РІР°РµС‚ РІСЃРµ РїР°СЂР°РјРµС‚СЂС‹ РЅР° РЅСѓР»СЊ
 {
 	display_number.clear();
 	dump.clear();
@@ -137,7 +139,7 @@ void QtTest::clear_display() // Очищает дисплей, сбрасывает все параметры на нул
 	i = 0;
 }
  
-void QtTest::minus() // вычитание
+void QtTest::minus() // РІС‹С‡РёС‚Р°РЅРёРµ
 {
 	operand = '-';
 	a = display_number.toDouble();
@@ -169,7 +171,7 @@ void QtTest::minus() // вычитание
 }
 
 
-void QtTest::plus() // сложение
+void QtTest::plus() // СЃР»РѕР¶РµРЅРёРµ
 {
 	operand = '+';
 	a = display_number.toDouble();
@@ -202,7 +204,7 @@ void QtTest::plus() // сложение
 	
 }
 
-void QtTest::share() // деление
+void QtTest::share() // РґРµР»РµРЅРёРµ
 {
 	operand = '/';
 	a = display_number.toDouble();
@@ -236,7 +238,7 @@ void QtTest::share() // деление
 
 }
 
-void QtTest::multiply()//умножение
+void QtTest::multiply()//СѓРјРЅРѕР¶РµРЅРёРµ
 {
 	operand = '*';
 	a = display_number.toDouble();
@@ -267,7 +269,7 @@ void QtTest::multiply()//умножение
 	
 }
 
-double QtTest::pow_calculator()// функция возведения в степень 
+double QtTest::pow_calculator()// С„СѓРЅРєС†РёСЏ РІРѕР·РІРµРґРµРЅРёСЏ РІ СЃС‚РµРїРµРЅСЊ 
 {	
 	if (i == 0)
 	{
@@ -285,7 +287,7 @@ double QtTest::pow_calculator()// функция возведения в степень
 
 }
 
-double QtTest::sqrt_calculator()// функция вычисления корня квадратного 
+double QtTest::sqrt_calculator()// С„СѓРЅРєС†РёСЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РєРѕСЂРЅСЏ РєРІР°РґСЂР°С‚РЅРѕРіРѕ 
 {
 	
 	if (i == 0)
@@ -296,7 +298,7 @@ double QtTest::sqrt_calculator()// функция вычисления корня квадратного
 		i++;
 	}
 	else {
-		result = sqrt(result);// получаем результат
+		result = sqrt(result);// РїРѕР»СѓС‡Р°РµРј СЂРµР·СѓР»СЊС‚Р°С‚
 		ui.lcdNumber->display(result);
 		display_number.clear();
 	}
@@ -304,7 +306,7 @@ double QtTest::sqrt_calculator()// функция вычисления корня квадратного
 	    return result;
 }
 
-double QtTest::percent_calculator() // функция расчитывает процент от числа
+double QtTest::percent_calculator() // С„СѓРЅРєС†РёСЏ СЂР°СЃС‡РёС‚С‹РІР°РµС‚ РїСЂРѕС†РµРЅС‚ РѕС‚ С‡РёСЃР»Р°
 {
 	a = display_number.toDouble();
 	result = ((double)a / 100) * ui.lineEdit_percent->text().toInt();
@@ -315,7 +317,7 @@ double QtTest::percent_calculator() // функция расчитывает процент от числа
 //================================================================
 
 
-void QtTest::arroy()// функция удаляет последнее введенное число
+void QtTest::arroy()// С„СѓРЅРєС†РёСЏ СѓРґР°Р»СЏРµС‚ РїРѕСЃР»РµРґРЅРµРµ РІРІРµРґРµРЅРЅРѕРµ С‡РёСЃР»Рѕ
 {
 	display_number.chop(1);	
 	a = display_number.toDouble();
@@ -327,30 +329,30 @@ void QtTest::arroy()// функция удаляет последнее введенное число
 
 
 
-void QtTest::total()// функция считает результат при нажатии кнопки "="
+void QtTest::total()// С„СѓРЅРєС†РёСЏ СЃС‡РёС‚Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РїСЂРё РЅР°Р¶Р°С‚РёРё РєРЅРѕРїРєРё "="
 {
 	switch (operand) {
 	case '+':
-		a = display_number.toDouble();//получаем строку с дисплея и преобразуем ее в число		
-		if (i == 0) {     // если число первое
-			result = a;   // то итоговый результат на экране равен числу с дисплея
-			dump.push_back(a);// добавляем число в хранилище		// выводим число на экран
-			display_number.clear();//очищаем строку(QString) дисплея [125671] для ввода следующего числа
+		a = display_number.toDouble();//РїРѕР»СѓС‡Р°РµРј СЃС‚СЂРѕРєСѓ СЃ РґРёСЃРїР»РµСЏ Рё РїСЂРµРѕР±СЂР°Р·СѓРµРј РµРµ РІ С‡РёСЃР»Рѕ		
+		if (i == 0) {     // РµСЃР»Рё С‡РёСЃР»Рѕ РїРµСЂРІРѕРµ
+			result = a;   // С‚Рѕ РёС‚РѕРіРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚ РЅР° СЌРєСЂР°РЅРµ СЂР°РІРµРЅ С‡РёСЃР»Сѓ СЃ РґРёСЃРїР»РµСЏ
+			dump.push_back(a);// РґРѕР±Р°РІР»СЏРµРј С‡РёСЃР»Рѕ РІ С…СЂР°РЅРёР»РёС‰Рµ		// РІС‹РІРѕРґРёРј С‡РёСЃР»Рѕ РЅР° СЌРєСЂР°РЅ
+			display_number.clear();//РѕС‡РёС‰Р°РµРј СЃС‚СЂРѕРєСѓ(QString) РґРёСЃРїР»РµСЏ [125671] РґР»СЏ РІРІРѕРґР° СЃР»РµРґСѓСЋС‰РµРіРѕ С‡РёСЃР»Р°
 			bool_point = true;
-			i++;//и перемещаемся на следующую ячейку
+			i++;//Рё РїРµСЂРµРјРµС‰Р°РµРјСЃСЏ РЅР° СЃР»РµРґСѓСЋС‰СѓСЋ СЏС‡РµР№РєСѓ
 		}
-		else //иначе
+		else //РёРЅР°С‡Рµ
 		{                                            
-			if (a != 0) // если число не равно нулю  
+			if (a != 0) // РµСЃР»Рё С‡РёСЃР»Рѕ РЅРµ СЂР°РІРЅРѕ РЅСѓР»СЋ  
 			{
-				dump.push_back(a); // то добавляем в хранилище
+				dump.push_back(a); // С‚Рѕ РґРѕР±Р°РІР»СЏРµРј РІ С…СЂР°РЅРёР»РёС‰Рµ
 			}
-			for (; i < dump.size(); i++)// идем циклом по массиву
+			for (; i < dump.size(); i++)// РёРґРµРј С†РёРєР»РѕРј РїРѕ РјР°СЃСЃРёРІСѓ
 			{
-				result += dump[i];// и складываем все числа
+				result += dump[i];// Рё СЃРєР»Р°РґС‹РІР°РµРј РІСЃРµ С‡РёСЃР»Р°
 			}
-			ui.lcdNumber->display(result);//отображаем итоговый результат
-			display_number.clear();//очищаем строку(QString) дисплея [125671] для ввода следующего числа
+			ui.lcdNumber->display(result);//РѕС‚РѕР±СЂР°Р¶Р°РµРј РёС‚РѕРіРѕРІС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
+			display_number.clear();//РѕС‡РёС‰Р°РµРј СЃС‚СЂРѕРєСѓ(QString) РґРёСЃРїР»РµСЏ [125671] РґР»СЏ РІРІРѕРґР° СЃР»РµРґСѓСЋС‰РµРіРѕ С‡РёСЃР»Р°
 		    bool_point = true;
 		}
 		break;
@@ -439,12 +441,12 @@ void QtTest::total()// функция считает результат при нажатии кнопки "="
 }
 
 
-void QtTest::slider_change_background_color() // функция меняет цвет фона
+void QtTest::slider_change_background_color() // С„СѓРЅРєС†РёСЏ РјРµРЅСЏРµС‚ С†РІРµС‚ С„РѕРЅР°
 {
 	qApp->setStyleSheet("QMainWindow {"+ color[ui.Slider_Background_Color->value()]+"}");
 }
 
-void QtTest::keyPressEvent(QKeyEvent *event) // обработчик событий ввода с клавиш клавиатуры
+void QtTest::keyPressEvent(QKeyEvent *event) // РѕР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№ РІРІРѕРґР° СЃ РєР»Р°РІРёС€ РєР»Р°РІРёР°С‚СѓСЂС‹
 {
 	int key = event->key();
 	
@@ -468,7 +470,7 @@ void QtTest::keyPressEvent(QKeyEvent *event) // обработчик событий ввода с клави
 
 }
 
-void QtTest::cb_change_color()// функция отображает слайдер если  в чекбокс стоит галочка
+void QtTest::cb_change_color()// С„СѓРЅРєС†РёСЏ РѕС‚РѕР±СЂР°Р¶Р°РµС‚ СЃР»Р°Р№РґРµСЂ РµСЃР»Рё  РІ С‡РµРєР±РѕРєСЃ СЃС‚РѕРёС‚ РіР°Р»РѕС‡РєР°
 {
 	if (ui.checkBox_change_color->checkState() )
 	{

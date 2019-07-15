@@ -1,14 +1,14 @@
-#include "QtTest.h"
+п»ї#include "QtTest.h"
 #include <QtWidgets/QApplication>
 #include <qfile.h>
 
-//utf-8// проверка корректности отображения шрифта
+//utf-8
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	QFile style;
-	style.setFileName("style.css");//подключение файла со стилями
+	style.setFileName("style.css");//РїРѕРґРєР»СЋС‡РµРЅРёРµ С„Р°Р№Р»Р° СЃРѕ СЃС‚РёР»СЏРјРё
 	style.open(QFile::ReadOnly);
 	QString qssStr = style.readAll();
 	qApp->setStyleSheet(qssStr);

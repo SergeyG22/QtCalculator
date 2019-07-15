@@ -1,9 +1,11 @@
-#pragma once
+﻿#pragma once
 
 #include <QtWidgets/QMainWindow>
 #include <qpalette.h>
 #include <qvalidator.h>
 #include "ui_QtTest.h"
+
+//utf-8
 
 class QtTest : public QMainWindow
 {
